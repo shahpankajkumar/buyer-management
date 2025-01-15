@@ -1,0 +1,40 @@
+{
+  "buyers": [
+    {
+      "id": "0690",
+      "name": "pankaj",
+      "email": "pss@gmail.com",
+      "address": "anand park",
+      "mobileNo": "7698190664",
+      "buyerType": "wholesale",
+      "cutQuality": "10",
+      "color": "red",
+      "clarity": "10",
+      "caratWeight": "10"
+    },
+    {
+      "id": "2e0d",
+      "name": "raju",
+      "email": "raju@gmail.com",
+      "address": "anand park",
+      "mobileNo": "7698190664",
+      "buyerType": "retail",
+      "cutQuality": "10",
+      "color": "red",
+      "clarity": "10",
+      "caratWeight": "19"
+    },
+    {
+      "id": "876e",
+      "name": "niraj",
+      "email": "niraj@gmail.com",
+      "address": "anand nagar",
+      "mobileNo": "7698190664",
+      "buyerType": "retail",
+      "cutQuality": "10",
+      "color": "aaa",
+      "clarity": "10",
+      "caratWeight": "123"
+    }
+  ]
+}

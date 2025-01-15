@@ -1,0 +1,8 @@
+.main-btn {
+    margin-right: 10px;
+}
+.table-btn {
+    display: flex;
+    justify-content: end;
+    padding-bottom: 10px;
+}
