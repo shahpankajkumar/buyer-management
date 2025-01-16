@@ -10,7 +10,9 @@
       "cutQuality": "10",
       "color": "red",
       "clarity": "10",
-      "caratWeight": "10"
+      "caratWeight": "11",
+      "amount": "50",
+      "timeChargeAdd": "40"
     },
     {
       "id": "2e0d",
@@ -22,7 +24,9 @@
       "cutQuality": "10",
       "color": "red",
       "clarity": "10",
-      "caratWeight": "19"
+      "caratWeight": "19",
+      "amount": "800",
+      "timeChargeAdd": "20"
     },
     {
       "id": "876e",
@@ -34,7 +38,37 @@
       "cutQuality": "10",
       "color": "aaa",
       "clarity": "10",
-      "caratWeight": "123"
+      "caratWeight": "123",
+      "amount": "100",
+      "timeChargeAdd": "60"
+    },
+    {
+      "id": "fb82",
+      "name": "qwe",
+      "email": "pk@gmail.com",
+      "address": "ved road",
+      "mobileNo": "7698190564",
+      "buyerType": "retail",
+      "cutQuality": "10",
+      "color": "sss",
+      "clarity": "85",
+      "caratWeight": "9",
+      "amount": "10",
+      "timeChargeAdd": "20"
+    },
+    {
+      "id": "35a0",
+      "name": "pks",
+      "email": "sk@gmail.com",
+      "address": "aaa",
+      "mobileNo": "7698190564",
+      "buyerType": "wholesale",
+      "cutQuality": "10",
+      "color": "green",
+      "clarity": "10",
+      "caratWeight": "20",
+      "amount": "20",
+      "timeChargeAdd": "50"
     }
   ]
 }

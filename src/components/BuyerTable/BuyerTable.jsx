@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Table, Modal, Form, notification } from 'antd';
+import { Button, Table, Modal } from 'antd';
 import { useDispatch, useSelector } from "react-redux";
+import { useForm } from 'react-hook-form';
 import * as XLSX from 'xlsx';
-import { getBuyers } from '../../redux/action/buyerActions';
+import { getBuyers, updateBuyers } from '../../redux/action/buyerActions';
 import './BuyerTable.css';
 import emailjs from '@emailjs/browser';
+import ModalBuyer from '../ModalBuyer/ModalBuyer';
 
 
 const BuyerTable = () => {
@@ -14,6 +16,18 @@ const BuyerTable = () => {
     const [currentPageData, setCurrentPageData] = useState([]);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [selectedBuyer, setSelectedBuyer] = useState(null);
+    const { control, handleSubmit, reset, formState: { errors } } = useForm();
+    const [openResponsive, setOpenResponsive] = useState(false);
+    
+    const onSubmit = (data) => {
+        dispatch(updateBuyers(data.id,data))
+        setOpenResponsive(false); // Close modal after submission
+    };
+    
+    const handleOpenModal = () => {
+        reset(); // Clear previous form data
+        setOpenResponsive(true);
+    };
 
     const handleExport = (rows, fileName) => {
         const worksheet = XLSX.utils.json_to_sheet(rows);
@@ -73,6 +87,13 @@ const BuyerTable = () => {
             console.error('Failed to send email:', error.message);
         }
     };
+
+
+    const handleUpdateClick = (buyer) => {
+        setSelectedBuyer(buyer);
+        handleOpenModal();
+        reset(buyer); // Reset the form with buyer's data
+    };    
     
     // Table Columns
     const columns = [
@@ -87,6 +108,7 @@ const BuyerTable = () => {
             render: (_, record) => (
                 <div className='view-btn'>
                     <Button onClick={() => handleViewClick(record)} style={{ marginRight: '10px' }}>View</Button>
+                    <Button onClick={() => handleUpdateClick(record)} style={{ marginRight: '10px' }}>Update</Button>
                 </div>
             ),
         },
@@ -144,9 +166,23 @@ const BuyerTable = () => {
                         <p><strong>Color:</strong> {selectedBuyer.color}</p>
                         <p><strong>Clarity:</strong> {selectedBuyer.clarity}</p>
                         <p><strong>Carat Weight:</strong> {selectedBuyer.caratWeight}</p>
+                        <p><strong>Amount:</strong> {selectedBuyer.amount}</p>
+                        <p><strong>Charges add:</strong> {selectedBuyer.timeChargeAdd}</p>
                     </div>
                 )}
             </Modal>
+
+
+            {/* Modal for updating buyer details */}
+            <ModalBuyer
+                openResponsive={openResponsive}
+                setOpenResponsive={setOpenResponsive}
+                control={control}
+                handleSubmit={handleSubmit}
+                onSubmit={onSubmit}
+                errors={errors}
+                selectedBuyer={selectedBuyer}
+            />
         </>
     );
 };

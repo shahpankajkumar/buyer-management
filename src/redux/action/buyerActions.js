@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ADD_ITEM, GET_ITEMS } from '../Types/Type';
+import { ADD_ITEM, GET_ITEMS, UPDATE_ITEM } from '../Types/Type';
 import { toast } from '../../utils/constant';
 
 const URL = 'http://localhost:5000/buyers';
@@ -8,7 +8,6 @@ const URL = 'http://localhost:5000/buyers';
 export const addBuyers = (data) => async (dispatch) => {
   try {
     const response = await axios.post(URL, data);
-    console.log("Response:", response);
 
     if (response.status === 201) {
       dispatch({ type: ADD_ITEM, payload: response.data });
@@ -28,15 +27,11 @@ export const addBuyers = (data) => async (dispatch) => {
 };
 
 export const getBuyers = () => async (dispatch) => {
-  console.log("Fetching buyers...");
 
   try {
     const response = await axios.get(URL);
-    console.log("response",  response.data);
-    
 
     if (response.status === 200) {
-      console.log(">>>>");
       
       // Accessing the data property from the response
       dispatch({ type: GET_ITEMS, payload: response.data }); 
@@ -54,6 +49,27 @@ export const getBuyers = () => async (dispatch) => {
     }
     // Ensuring state consistency in case of error
     dispatch({ type: GET_ITEMS, payload: [] });
+  }
+};
+
+export const updateBuyers = (id, data) => async (dispatch) => {
+  try {
+    const response = await axios.put(`${URL}/${id}`, data);
+
+    if (response.status === 200) {
+      dispatch({ type: UPDATE_ITEM, payload: response.data });
+      toast(response.statusText, "success");
+    } else {
+      toast("Failed to update buyer", "error");
+    }
+  } catch (error) {
+    console.error("Error updating buyer:", error);
+
+    if (error.response) {
+      toast(error.response.data.message || "Error occurred", "error");
+    } else {
+      toast("Network error", "error");
+    }
   }
 };
 

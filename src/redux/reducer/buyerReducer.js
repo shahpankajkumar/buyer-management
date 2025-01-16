@@ -1,4 +1,4 @@
-import { ADD_ITEM, GET_ITEMS  } from '../Types/Type';
+import { ADD_ITEM, GET_ITEMS, UPDATE_ITEM  } from '../Types/Type';
 
 const initialState = {
   items: [],
@@ -26,6 +26,15 @@ const buyerReducer = (state = initialState, action) => {
         items: action.payload,
         loading: false,
         error: null, // Clear any previous errors
+      };
+
+    case UPDATE_ITEM:
+      return {
+        ...state,
+        items: state.items.map((item) =>
+          item.id === action.payload.id ? action.payload : item
+        ),
+        loading: false,
       };
 
     default:
